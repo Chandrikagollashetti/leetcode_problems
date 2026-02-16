@@ -1,10 +1,10 @@
 class Solution {
     public boolean isHappy(int n) {
-       HashSet<Integer>hm=new HashSet<>();
+       HashMap<Integer,Boolean>hm=new HashMap<>();
        while(n!=1){
-        if(hm.contains(n)) 
+        if(hm.containsKey(n)) 
         return false;
-        hm.add(n);
+        hm.put(n,true);
        int sum=0;
        while(n>0){
         int d=n%10;
