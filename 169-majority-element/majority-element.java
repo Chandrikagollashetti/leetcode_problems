@@ -9,8 +9,7 @@ class Solution {
         int c=0;
         int s=nums.length/2;
         for(int r:hm.keySet()){
-             int val=hm.get(r);
-             if(val>s){
+             if(hm.get(r)>s){
                 c=r;
                 break;
              }
