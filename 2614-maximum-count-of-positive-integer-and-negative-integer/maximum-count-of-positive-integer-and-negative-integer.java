@@ -1,15 +1,21 @@
 class Solution {
-    public int maximumCount(int[] nums) {
-        int p=0;
-        int n=0;
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]>0){
-                p++;
-
-            }else if(nums[i]<0){
-                n++;
+    public int LeftMost(int[] nums,int target){
+        int l=0;
+        int r=nums.length-1;
+        while(l<=r){
+            int m=l+(r-l)/2;
+            if(nums[m]>=target){
+                r=m-1;
+            }else{
+                l=m+1;
             }
         }
+        return l;
+    }
+    public int maximumCount(int[] nums) {
+        int n=LeftMost(nums,0);
+        int one=LeftMost(nums,1);
+        int p=nums.length-one;
         return Math.max(p,n);
     }
 }
