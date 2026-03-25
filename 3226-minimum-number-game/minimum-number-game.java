@@ -1,19 +1,11 @@
 class Solution {
     public int[] numberGame(int[] nums) {
-        PriorityQueue<Integer> pq=new PriorityQueue<>();
-        for(int i=0;i<nums.length;i++){
-          pq.add(nums[i]); 
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i+=2){
+            int t=nums[i];
+            nums[i]=nums[i+1];
+            nums[i+1]=t;
         }
-        int arr[]=new int[nums.length];
-        int j=0;
-        while(pq.size()>0){
-            int alice=pq.poll();
-            int bob=pq.poll();
-            arr[j]=bob;
-            j++;
-            arr[j]=alice;
-            j++;
-        }
-        return arr;
+        return nums;
     }
 }
