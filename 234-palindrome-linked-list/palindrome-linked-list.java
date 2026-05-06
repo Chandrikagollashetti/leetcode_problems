@@ -10,38 +10,30 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if(head==null || head.next==null){
-            return true;
+        if(head==null || head.next==null) return true;
+        //turtle and hare approach to find mid element
+        ListNode tur=head;
+        ListNode hare=head;
+        while(hare!=null && hare.next!=null){
+            tur=tur.next;
+            hare=hare.next.next;
         }
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast.next!=null && fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-        }
-        ListNode secondHalf=reverse(slow.next);
-        ListNode first=head;
-        ListNode second=secondHalf;
-        while(second!=null){
-            if(first.val!=second.val){
-                reverse(secondHalf);
-                return false;
-            }
-            first=first.next;
-            second=second.next;
-        }
-        reverse(secondHalf);
-        return true;
-    }
-    private ListNode reverse(ListNode head){
+        //reverse secondhalf
         ListNode prev=null;
-        ListNode curr=head;
-        while(curr!=null){
-            ListNode nextNode=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=nextNode;
+        while(tur!=null){
+            ListNode next=tur.next;
+            tur.next=prev;
+            prev=tur;
+            tur=next;
         }
-        return prev;
+        //Compare
+        ListNode f=head;
+        ListNode s=prev;
+        while(s!=null){
+            if(f.val!=s.val) return false;
+            f=f.next;
+            s=s.next;
+        }
+        return true;
     }
 }
